@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Fiókom
+{% endblock %}
+
+{% block content %}
+<h1>Fiókom</h1>
+    <div class="d-flex align-items-center pt-2">
+    <img class="bd-placeholder-img mr-3 rounded" width="64" height="64" src="{{ user.profile.img.url }}">    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+       <p class="media-body pb-4 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@{{ user.username }}</strong>
+        {% if user.email %}
+            <b>Email:</b> {{ user.email }}
+        {% endif %}
+    </p>
+</div>
+<form method="post" enctype = "multipart/form-data" class="form-register mt-4">
+        {% csrf_token %}
+        {{ updateUserForm.as_p }}
+        {{ profileForm.as_p }}
+        <button class="btn btn-outline-warning" type="submit">Adatok frissítése</button>
+    </form>
+{% endblock %}
+
+{% block aside_block %}
+<h4 class="mt-2">Érdekes cikkek</h4>
+                <img src="https://www.investopedia.com/thmb/aqxryEXDlWznpQaij72CpAkxqZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1030831244-4279d87f1272423288e24a9ed9925c80.jpg" class="img-thumbnail">
+                <p>A gazdagság nem csak abban rejlik mennyi pénz keresünk. Hanem inkább abban mennyire bánunk vele jól amit megkerestünk.</p>
+           
+                <a href="https://www.motibooks.hu/" target="_blank">
+                    <button class="btn btn-warning">Tudj meg többet</button>
+                </a>
+
+                      <img src="https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/wallet-512.png" class="img-thumbnail mt-4">
+                <p>Ha valami nagy dolgot szeretnél vásárolni halaszd el egy hónappal későbbre, ha még akkor is úgy gondolod meg kell venned csak akor vedd meg.</p>
+           
+                <a href="https://www.motibooks.hu/" target="_blank">
+                    <button class="btn btn-warning">Tudj meg többet</button>
+                </a>    
+{% endblock %}

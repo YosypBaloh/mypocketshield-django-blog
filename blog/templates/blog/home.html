@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+    {% for post in news %}
+    <div class="alert alert-light">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|striptags|truncatechars:200  }}</p>
+
+        <div class="author-box">
+            <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images">
+            <div class="mt-2">
+                <span class="text-muted">Közzététel: {{ post.date|date:" Y F j, \\I\\dő: H:i" }}</span>
+                <p><b>Szerző:</b> <mark>{{ post.author }}</mark></p>
+            </div>
+        </div>
+        <a href="{% url 'news-detail' post.id %}" class="btn btn-outline-warning mt-3">Olvass tovább</a>
+    </div>
+    {% endfor %}
+
+    {% if is_paginated %}
+     {% if page_obj.has_previous %}
+    <a href="{% url 'home' %}" class="btn btn-outline-success">Legelső</a>
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-success">Előző</a>
+
+     {%  endif  %}
+
+      {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-success">Következő</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-success">Utolsó</a>
+
+     {%  endif  %}
+    {%  endif  %}
+{% endblock %}
+
+{% block aside_block %}
+<h4 class="mt-2">Érdekes cikkek</h4>
+                    <img src="https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/wallet-512.png" class="img-thumbnail">
+                <p>Ha valami nagy dolgot szeretnél vásárolni halaszd el egy hónappal későbbre, ha még akkor is úgy gondolod meg kell venned csak akor vedd meg.</p>
+           
+                <a href="https://www.motibooks.hu/" target="_blank">
+                    <button class="btn btn-warning">Tudj meg többet</button>
+                </a>  
+                
+                 <img src="https://www.investopedia.com/thmb/aqxryEXDlWznpQaij72CpAkxqZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1030831244-4279d87f1272423288e24a9ed9925c80.jpg" class="img-thumbnail  mt-4">
+                <p>A gazdagság nem csak abban rejlik mennyi pénz keresünk. Hanem inkább abban mennyire bánunk vele jól amit megkerestünk.</p>
+           
+                <a href="https://www.motibooks.hu/" target="_blank">
+                    <button class="btn btn-warning">Tudj meg többet</button>
+                </a>
+
+{% endblock %}

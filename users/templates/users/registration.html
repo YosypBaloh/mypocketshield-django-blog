@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form method="post" class="form-register">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-warning" type="submit">Regisztráció</button>
+        <hr>
+        <p>Már van fiókja?<a href="{% url 'user' %}"> Jelentkezzen be</a></p>
+    </form>
+{% endblock %}
+
+{% block aside_block %}
+<h4 class="mt-2">Érdekes cikkek</h4>
+                <img src="https://www.investopedia.com/thmb/aqxryEXDlWznpQaij72CpAkxqZk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1030831244-4279d87f1272423288e24a9ed9925c80.jpg" class="img-thumbnail">
+                <p>A gazdagság nem csak abban rejlik mennyi pénz keresünk. Hanem inkább abban mennyire bánunk vele jól amit megkerestünk.</p>
+           
+                <a href="https://www.motibooks.hu/" target="_blank">
+                    <button class="btn btn-warning">Tudj meg többet</button>
+                </a>
+
+                      <img src="https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/wallet-512.png" class="img-thumbnail mt-4">
+                <p>Ha valami nagy dolgot szeretnél vásárolni halaszd el egy hónappal későbbre, ha még akkor is úgy gondolod meg kell venned csak akor vedd meg.</p>
+           
+                <a href="https://www.motibooks.hu/" target="_blank">
+                    <button class="btn btn-warning">Tudj meg többet</button>
+                </a>    
+{% endblock %}
