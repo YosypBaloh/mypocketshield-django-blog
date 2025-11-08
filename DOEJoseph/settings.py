@@ -14,8 +14,8 @@ SECRET_KEY = 'django-insecure-xuxeq#ri03)088)_inw-8kt6+_9(&3+zdv9svyf@v)#f&h03jt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [mypocketshield-django-blog-production.up.railway.app]
-CSRF_TRUSTED_ORIGINS = [mypocketshield-django-blog-production.up.railway.app]
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://mypocketshield-django-blog-production.up.railway.app']
 
 
 # Application definition
@@ -120,6 +120,7 @@ else:
 
 # DEFAULT_AUTO_FIELD kommentből kivétele
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'user'
