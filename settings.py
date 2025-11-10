@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -60,15 +61,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'DOEJoseph.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+# Alapértelmezett beállítás (SQLite) lokális fejlesztéshez
+default_db_config = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': BASE_DIR / 'db.sqlite3',
 }
+
+# A Railway (vagy más szolgáltató) által biztosított DATABASE_URL beolvasása
+# Ha létezik, felülírja az alapértelmezett SQLite beállítást.
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    print("Connecting to external Postgres database...") # Ez segít a logokban látni, hogy sikerült-e
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    print("DATABASE_URL not found, using local SQLite.")
+    DATABASES = {
+        'default': default_db_config
+    }
 
 
 # Password validation
