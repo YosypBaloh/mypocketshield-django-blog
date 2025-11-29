@@ -1,15 +1,15 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-  Bejelentkezés
+  Jelszó helyreállítása
 {% endblock %}
 
 {% block content %}
-    <h1>Bejelentkezés</h1>
+    <h1>Jelszó helyreállítása</h1>
     <form method="post" class="form-register auth">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-outline-warning" type="submit">Bejelentkezés</button>
+        <button class="btn btn-danger" type="submit">Új jelszó kérése</button>
     </form>
 {% endblock %}
 
